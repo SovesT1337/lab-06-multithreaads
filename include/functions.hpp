@@ -22,6 +22,7 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <stdlib.h>
 
 #include "nlohmann/json.hpp"
 #include "picosha2.h"
@@ -33,7 +34,7 @@ using std::vector;
 using std::thread;
 using std::mutex;
 
-void print(const std::string&, int, time_t);
+//void print(const std::string&, unsigned int, time_t);
 void init();
 void calc(time_t);
 

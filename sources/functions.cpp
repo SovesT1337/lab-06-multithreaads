@@ -8,11 +8,10 @@ mutex mx1;
 void init() {
   BOOST_LOG_TRIVIAL(trace) << "A trace severity message";
   BOOST_LOG_TRIVIAL(info) << "An informational severity message";
-  srand(time(nullptr));
   boost::log::add_common_attributes();
 }
 
-void print(const string& hash, int random, time_t t0) {
+void print(const string& hash, unsigned int random, time_t t0) {
   time_t t1 = time(nullptr);
   double time = difftime(t1, t0);
 
@@ -28,7 +27,11 @@ void print(const string& hash, int random, time_t t0) {
 }
 
 void calc(time_t t0) {
-  int random = rand();
+  std::random_device dev;
+  std::mt19937 rand(dev());
+  std::uniform_int_distribution<std::mt19937::result_type> dist(
+      0, std::numeric_limits<int>::max());
+  unsigned int random = dist(rand);
 
   string data{std::to_string(random)};
   string hash = picosha2::hash256_hex_string(data);
