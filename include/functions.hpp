@@ -25,7 +25,7 @@
 #include <stdlib.h>
 
 #include "nlohmann/json.hpp"
-#include "picosha2.h"
+#include "picosha2.hpp"
 
 namespace bl = boost::log;
 using nlohmann::json;
